@@ -1,0 +1,104 @@
+/* Sidebar container */
+.sidebar {
+  width: 200px; /* Slightly wider for better readability */
+  height: 100vh; /* Full height */
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  color: white; /* White text */
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Consistent shadow */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border-right: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  position: fixed; /* Sticks to the left */
+  top: 0;
+  left: 0;
+  overflow-y: auto; /* Allows scrolling if needed */
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+/* Sidebar menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  flex-grow: 1; /* Expands to fill space */
+}
+
+/* List items */
+.sidebar-menu li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 8px;
+  margin: 5px 0;
+  color: rgb(2, 1, 1); /* White text */
+}
+
+.sidebar-menu li:hover {
+  background: rgba(255, 255, 255, 0.2); /* Hover effect */
+}
+
+/* Active item */
+.sidebar-menu li.active {
+  background: #00cec9; /* Teal background for active item */
+  color: white;
+  font-weight: bold;
+}
+
+/* Accordion header button */
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0); /* White text */
+  font-size: 16px;
+  text-align: left;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 8px;
+}
+
+.accordion-header:hover {
+  background: rgba(255, 255, 255, 0.2); /* Hover effect */
+}
+
+/* Dropdown arrow */
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Submenu styles */
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.submenu li {
+  padding: 8px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border-radius: 8px;
+  margin: 5px 0;
+  transition: background 0.3s;
+}
+
+.submenu li:hover {
+  background: rgba(255, 255, 255, 0.2); /* Hover effect */
+}
+
+/* Divider */
+.divider {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1); /* Subtle border color */
+  margin: 10px 0;
+}

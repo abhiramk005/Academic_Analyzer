@@ -1,0 +1,137 @@
+/* Center the login form */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e, #16213e); /* Dark gradient background */
+}
+
+/* Style for the white box */
+.login-box {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+/* Heading */
+.login-box h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #00cec9; /* Teal accent color */
+}
+
+/* Form fields */
+.login-box label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #ffffff; /* White text */
+}
+
+.login-box input {
+  width: 95%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent input background */
+  color: #ffffff; /* White text */
+  font-size: 14px;
+}
+
+.login-box input::placeholder {
+  color: rgba(255, 255, 255, 0.5); /* Light placeholder text */
+}
+
+/* Login button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #00cec9, #00b894); /* Teal gradient button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #00b894, #00cec9); /* Gradient hover effect */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Register text */
+.register-text {
+  margin-top: 15px;
+  color: rgba(255, 255, 255, 0.8); /* Light text */
+}
+
+.register-text:hover {
+  color: #00cec9; /* Teal accent color on hover */
+  cursor: pointer;
+}
+
+/* Role toggle buttons */
+.role-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.role-toggle button {
+  padding: 10px 20px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  cursor: pointer;
+  flex: 1;
+  transition: 0.3s;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8); /* Light text */
+  font-size: 14px;
+}
+
+.role-toggle button:hover {
+  background: rgba(255, 255, 255, 0.2); /* Hover effect */
+}
+
+.role-toggle .active {
+  background: linear-gradient(135deg, #00cec9, #00b894); /* Teal gradient for active button */
+  color: white;
+  font-weight: bold;
+}
+
+/* Password container */
+.password-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-container input {
+  flex: 1;
+  padding-right: 40px; /* Space for the button */
+}
+
+.show-password-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8); /* Light icon color */
+}
+
+.show-password-btn:hover {
+  color: #00cec9; /* Teal accent color on hover */
+}

@@ -1,0 +1,7 @@
+.home-container {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    height: 100vh;
+  }
+  
