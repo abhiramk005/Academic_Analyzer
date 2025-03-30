@@ -45,7 +45,7 @@ function Upload() {
       formData.append("file", file);
 
       // First get preview data
-      const previewResponse = await fetch("http://localhost:3000/preview", {
+      const previewResponse = await fetch("http://localhost:3000/api/preview", {
         method: "POST",
         body: formData,
       });
@@ -65,7 +65,7 @@ function Upload() {
   const handleConfirmUpload = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:3000/upload", {
+      const response = await fetch("http://localhost:3000/api/upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
