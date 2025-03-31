@@ -4,7 +4,11 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e, #16213e); /* Dark gradient background */
+  background: linear-gradient(
+    135deg,
+    #1a1a2e,
+    #16213e
+  ); /* Dark gradient background */
 }
 
 /* Style for the white box */
@@ -55,7 +59,11 @@
   width: 100%;
   padding: 12px;
   margin-top: 20px;
-  background: linear-gradient(135deg, #00cec9, #00b894); /* Teal gradient button */
+  background: linear-gradient(
+    135deg,
+    #00cec9,
+    #00b894
+  ); /* Teal gradient button */
   color: white;
   border: none;
   border-radius: 8px;
@@ -66,7 +74,11 @@
 }
 
 .login-btn:hover {
-  background: linear-gradient(135deg, #00b894, #00cec9); /* Gradient hover effect */
+  background: linear-gradient(
+    135deg,
+    #00b894,
+    #00cec9
+  ); /* Gradient hover effect */
   transform: translateY(-2px); /* Slight lift on hover */
 }
 
@@ -105,7 +117,11 @@
 }
 
 .role-toggle .active {
-  background: linear-gradient(135deg, #00cec9, #00b894); /* Teal gradient for active button */
+  background: linear-gradient(
+    135deg,
+    #00cec9,
+    #00b894
+  ); /* Teal gradient for active button */
   color: white;
   font-weight: bold;
 }
@@ -130,6 +146,11 @@
   cursor: pointer;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.8); /* Light icon color */
+}
+.error-message {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
 }
 
 .show-password-btn:hover {
