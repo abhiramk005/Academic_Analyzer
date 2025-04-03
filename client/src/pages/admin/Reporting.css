@@ -1,0 +1,167 @@
+.reporting-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #fadbd8;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.loading {
+  color: #3498db;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Filters Section */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.filter-group label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.filter-group select {
+  padding: 8px 12px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.apply-filter,
+.clear-filter {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  height: 36px;
+}
+
+.apply-filter {
+  background-color: #00cec9;
+  color: white;
+}
+
+.apply-filter:hover {
+  background-color: #00b894;
+}
+
+.apply-filter:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.clear-filter {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.clear-filter:hover {
+  background-color: #c0392b;
+}
+
+.clear-filter:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* Student Table */
+.student-table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+tr:hover {
+  background-color: #f8f9fa;
+}
+
+.no-results {
+  text-align: center;
+  color: #7f8c8d;
+  padding: 20px;
+}
+
+/* Status badges */
+.wob-success {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.wb-success {
+  color: #2980b9;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-buttons {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+}

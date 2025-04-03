@@ -1,11 +1,31 @@
 const { calculateGPA, getDepartmentAndBatch } = require("../utils/helpers");
 
-async function processStudentData(student, data, selectedSemester, isRegularStudent) {
+async function processStudentData(student, data, selectedSemester, isRegularStudent,resultType) {
   const semesterIndex = student.semester_results.findIndex(
     (result) => result.semester === selectedSemester
   );
+  if(resultType === "revaluation"){
+    // Revaluation logic - update grades without changing attempts
+    if (semesterIndex === -1) {
+      throw new Error("Cannot process revaluation for non-existent semester");
+    }
 
-  if (!isRegularStudent) {
+    const semesterData = student.semester_results[semesterIndex];
+    
+    semesterData.subjects.forEach((subject) => {
+      const subjectResult = data.subjects.find(
+        (s) => s.code === subject.subject_code
+      );
+      if (subjectResult && subjectResult.grade !== "No change") {
+        // Only update grade and status, don't increment attempts
+        subject.grade = subjectResult.grade;
+        subject.status = subjectResult.grade === "F" ? "Fail" : "Pass";
+      }
+    });
+
+    semesterData.gpa = calculateGPA(semesterData.subjects);
+  }
+  else if (!isRegularStudent) {
     // Supplementary student logic
     if (semesterIndex === -1) {
       // If semester doesn't exist, create it with attempts=2

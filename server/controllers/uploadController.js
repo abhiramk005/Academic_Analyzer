@@ -21,7 +21,7 @@ async function uploadResults(req, res) {
         const newStudentData = await createNewStudent(data, selectedSemester, isRegularStudent);
         student = new Student(newStudentData);
       } else {
-        await processStudentData(student, data, selectedSemester, isRegularStudent);
+        await processStudentData(student, data, selectedSemester, isRegularStudent,resultType);
       }
 
       await student.save();

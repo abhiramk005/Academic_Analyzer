@@ -1,0 +1,45 @@
+.header {
+  width: 100%;
+  background: linear-gradient(135deg, #0f0c29, #302b63);
+  padding: 15px 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  color: #00cec9;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+  color: white;
+  background-color: rgba(0, 206, 201, 0.2);
+}
+
+.website-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00cec9;
+  margin: 0;
+}
+
+.header-spacer {
+  width: 40px; /* Matches the menu button width for balance */
+}

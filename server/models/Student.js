@@ -16,6 +16,7 @@ const semesterResultSchema = new mongoose.Schema({
 });
 
 const studentSchema = new mongoose.Schema({
+ // _id: mongoose.Schema.Types.ObjectId,  // MongoDB's unique ID
   register_number: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   department: { type: String, required: true },
