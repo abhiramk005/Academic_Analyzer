@@ -7,6 +7,7 @@ import Academics from "./pages/student/Academics"; // Import Academics page
 import TrackProgress from "./pages/student/Trackprogress";
 import Analytics from "./pages/admin/Analytics";
 import Reporting from "./pages/admin/Reporting";
+import Manual from "./pages/admin/ManualEntry"
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/studlogin/track-progress" element={<TrackProgress />} />
         <Route path="/admin/analytics" element={<Analytics />} />
         <Route path="admin/reporting" element={<Reporting/>}/>
+        <Route path="admin/manual-entry" element={<Manual/>}/>
       </Routes>
     </BrowserRouter>
   );

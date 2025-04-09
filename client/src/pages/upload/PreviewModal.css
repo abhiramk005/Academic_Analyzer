@@ -197,3 +197,22 @@
   height: 24px;
   }
 }
+/* Add these to your existing PreviewModal.css */
+.credit-input {
+  width: 80px;
+  padding: 4px 8px;
+  text-align: right;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+  .credit-input {
+    width: 60px;
+    padding: 2px 4px;
+  }
+  
+  .preview-table th:nth-child(4),
+  .preview-table td:nth-child(4) {
+    min-width: 80px;
+  }
+}

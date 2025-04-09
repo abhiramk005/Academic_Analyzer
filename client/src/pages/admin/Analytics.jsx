@@ -86,6 +86,7 @@ function Analytics() {
         `http://localhost:3001/api/analytics/students/filter?${params.toString()}`
       );
       const data = await response.json();
+      console.log("Filtered data:", data)
       setStudents(data);
       
       setError("");
@@ -210,7 +211,7 @@ function Analytics() {
                   <th>Student Name</th>
                   <th>Semester</th>
                   <th>Backlogs</th>
-                  <th>CGPA</th>
+                  {/* <th>CGPA</th> */}
                   <th>Batch</th>
                 </tr>
               </thead>
@@ -226,7 +227,7 @@ function Analytics() {
                         <td>{student.name}</td>
                         <td>{student.semester}</td>
                         <td>{student.backlogs}</td>
-                        <td>{student.cgpa}</td>
+                        {/* <td>{student.cgpa}</td> */}
                         <td>{batch ? `20${batch}` : ''}</td>
                       </tr>
                     );

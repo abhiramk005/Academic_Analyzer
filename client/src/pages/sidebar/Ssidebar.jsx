@@ -8,7 +8,7 @@ function Ssidebar({ activeItem }) {
 
   // Automatically open the Dashboard dropdown if the activeItem is "backlogs" or "track-progress"
   useEffect(() => {
-    if (activeItem === "backlogs" || activeItem === "track-progress") {
+    if (activeItem === "backlogs" || activeItem === "track-progress" || activeItem ==="report-issue") {
       setOpen(1); // Keep Dashboard section open
     }
   }, [activeItem]);
@@ -52,6 +52,12 @@ function Ssidebar({ activeItem }) {
                 onClick={() => navigate("/studlogin/track-progress")}
               >
                 📈 Track Progress
+              </li>
+              <li
+                className={activeItem === "report-issue" ? "active" : ""}
+                onClick={() => navigate("/studlogin/report-issue")}
+              >
+                ⚠️ Report issue
               </li>
             </ul>
           )}

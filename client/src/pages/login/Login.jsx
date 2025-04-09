@@ -8,10 +8,14 @@ function Login() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async(e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null);
     localStorage.setItem("role", role); // Store role in localStorage
 
     console.log(userId, password)
@@ -40,15 +44,19 @@ function Login() {
       console.log("Login successful:", data);
 
     } catch (error) {
+      setError(error.message);
         console.error("Error:", error);
+    }finally {
+      setLoading(false);
     }
       
   };
 
   return (
+    
     <div className="login-container">
       <div className="login-box">
-        <h2>Login</h2>
+        <h2>Login</h2> 
 
         {/* Role selection buttons */}
         <div className="role-toggle">
@@ -88,12 +96,18 @@ function Login() {
             </button>
           </div>
 
-          <button type="submit" className="login-btn">Login</button>
+          <button type="submit" className="login-btn">{loading ? "Loading.." : "Login"}</button>
         </form>
-
-        <p className="register-text">Forgot password?</p>
+        
+        {/* <p className="register-text">Forgot password?</p> */}
+        <div>
+          {error && <p className="error-msg">{error}</p>}
+        </div>
+        
       </div>
+      
     </div>
+    
   );
 }
 

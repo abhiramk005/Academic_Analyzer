@@ -135,3 +135,11 @@
 .show-password-btn:hover {
   color: #00cec9; /* Teal accent color on hover */
 }
+
+
+.error-msg{
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+
+}

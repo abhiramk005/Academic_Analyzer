@@ -75,6 +75,7 @@ const getStudentBacklogs = async (req, res) => {
 };
 
 // Filter students based on WOB or WB criteria
+// Filter students based on WOB or WB criteria
 const filterStudents = async (req, res) => {
   try {
     const { semester, batch, department, status } = req.query;
@@ -82,14 +83,14 @@ const filterStudents = async (req, res) => {
 
     let matchStage = {};
 
-    // Ensure semester filter works correctly
+    // Semester filter
     if (semester && semester !== "all") {
       matchStage["semester_results.semester"] = { $lte: parseInt(semester.replace("S", "")) };
     }
 
-    // Ensure register number pattern is correct
+    // Batch filter (based on register number prefix)
     if (batch && batch !== "all") {
-      const batchCode = batch.slice(2); // Extract batch year (e.g., "2020" -> "20")
+      const batchCode = batch.slice(2); // e.g., "2020" -> "20"
       matchStage["register_number"] = { $regex: `^WYD${batchCode}` };
     }
 
@@ -137,7 +138,7 @@ const filterStudents = async (req, res) => {
       }
     ];
 
-    // Apply WOB and WB filtering
+    // Apply WOB and WB filters
     if (status === "wob_success") {
       aggregationPipeline.push({
         $match: { $expr: { $eq: ["$totalSubjects", "$passedOnFirstAttempt"] } }
@@ -148,19 +149,21 @@ const filterStudents = async (req, res) => {
       });
     }
 
-    aggregationPipeline.push({
-      $project: {
-        _id: 0,
-        register_number: "$_id"
-      }
+    // Get filtered register numbers
+    const filteredResult = await Student.aggregate(aggregationPipeline);
+    const registerNumbers = filteredResult.map(r => r._id);
+
+    // Fetch full student documents based on filtered register numbers
+    const fullStudents = await Student.find({
+      register_number: { $in: registerNumbers }
     });
 
-    const students = await Student.aggregate(aggregationPipeline);
-    res.json(students);
+    res.json(fullStudents);
   } catch (error) {
     console.error("Error filtering students:", error);
     res.status(500).json({ error: "Server error" });
   }
 };
+
 
 module.exports = { getAllStudents, getStudentBacklogs, filterStudents };

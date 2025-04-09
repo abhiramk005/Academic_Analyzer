@@ -76,6 +76,7 @@ function Reporting() {
         `http://localhost:3001/api/reporting/students/filter?${params.toString()}`
       );
       const data = await response.json();
+      console.log("Filtered data:", data); 
 
       setStudents(Array.isArray(data) ? data : []);
       setError("");

@@ -4,6 +4,8 @@ import Asidebar from "../sidebar/Asidebar";
 import "./Upload.css";
 import Header from "../Header/Header";
 import PreviewModal from "./PreviewModal";
+import { useNavigate } from "react-router-dom";
+import UploadHistory from "./UploadHistory"; // Corrected import
 
 function Upload() {
   const [semester, setSemester] = useState("");
@@ -14,9 +16,13 @@ function Upload() {
   const [isLoading, setIsLoading] = useState(false);
   const [previewData, setPreviewData] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
-
+  const [showHistory, setShowHistory] = useState(false); // State for modal
+  const navigate = useNavigate();
   const { getRootProps, getInputProps } = useDropzone({
-    accept: { "application/pdf": [".pdf"] },
+    accept: { "application/pdf": [".pdf"],
+      "application/vnd.ms-excel": [".xls"],
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"]
+     },
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length === 0) {
         setError("Invalid file type. Please upload a PDF.");
@@ -44,11 +50,19 @@ function Upload() {
       formData.append("resultType", resultType);
       formData.append("file", file);
 
-      // First get preview data
-      const previewResponse = await fetch("http://localhost:3001/api/preview", {
-        method: "POST",
-        body: formData,
-      });
+      let previewResponse;      
+      if(resultType==="credit"){
+        previewResponse = await fetch("http://localhost:3001/api/credit-preview",{
+          method: "POST",
+          body: formData,
+        });
+      }else{
+      // Fetch Preview Data
+        previewResponse = await fetch("http://localhost:3001/api/preview", {
+          method: "POST",
+          body: formData,
+        });
+     }
 
       if (!previewResponse.ok) throw new Error("Preview failed");
       
@@ -64,8 +78,10 @@ function Upload() {
 
   const handleConfirmUpload = async () => {
     try {
-      setIsLoading(true);
-      const response = await fetch("http://localhost:3001/api/upload", {
+      let response;
+      if(resultType==="credit"){
+        setIsLoading(true);
+      response = await fetch("http://localhost:3001/api/credit-upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -75,6 +91,20 @@ function Upload() {
           resultType: previewData.resultType
         })
       });
+      }
+      else{
+      setIsLoading(true);
+      response = await fetch("http://localhost:3001/api/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          studentsData: previewData.previewData,
+          semester: previewData.semester,
+          batch,
+          resultType: previewData.resultType
+        })
+      });
+    }
 
       if (!response.ok) throw new Error("Upload failed");
       
@@ -154,21 +184,27 @@ function Upload() {
               <option value="">Select Result Type</option>
               <option value="regular">Regular</option>
               <option value="revaluation">Revaluation</option>
+              <option value="credit">Credit Result</option>
             </select>
           </div>
 
           {/* Drag-and-Drop File Upload */}
           <div className="form-group">
-            <label>Upload PDF</label>
+            <label>
+            Upload {resultType === "credit" ? "Excel File" : "PDF"}
+            </label>
             <div {...getRootProps()} className="dropzone">
               <input {...getInputProps()} />
-              {file ? (
-                <p>File selected: {file.name}</p>
+             {file ? (
+              <p>File selected: {file.name}</p>
               ) : (
-                <p>Drag & drop a PDF file here, or click to select one</p>
-              )}
+                <p>
+                Drag & drop a {resultType === "credit" ? "Excel (.xlsx/.xls)" : "PDF"} file here, or click to select one
+                </p>
+             )}
             </div>
           </div>
+
 
           {/* Error Message */}
           {error && <p className="error">{error}</p>}
@@ -177,7 +213,23 @@ function Upload() {
           <button type="submit" className="submit-btn" disabled={isLoading}>
             {isLoading ? "Processing..." : "Upload"}
           </button>
+
+          {/* Button to Open Upload History */}
+           {/* ✅ Manual Entry Button */}
+           
+       
         </form>
+        {/* <div className="manual-btn-div">
+             <button 
+          className="manual-entry-btn"
+          onClick={() => navigate("/admin/manual-entry")}
+        >
+          Manual Entry
+        </button>
+           </div> */}
+
+        {/* Upload History Modal */}
+        {/* {showHistory && <UploadHistory onClose={() => setShowHistory(false)} />} */}
 
         {/* Preview Modal */}
         {showPreview && previewData && (
@@ -188,7 +240,16 @@ function Upload() {
             isLoading={isLoading}
           />
         )}
+        {/* <button 
+          className="history-btn" 
+          onClick={() => setShowHistory(true)}
+        >
+          View Upload History
+        </button> */}
+        
+       
       </div>
+      
     </div>
   );
 }
